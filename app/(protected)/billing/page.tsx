@@ -1,5 +1,7 @@
+import { PricingPage } from "@/components/PricingPage";
+
 export default function BillingPage() {
   return (
-    <>Billing</>
+    <PricingPage isConnected={true} />
   )
 }
