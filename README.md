@@ -37,8 +37,8 @@ A modern, feature-rich pricing interface built with Next.js for managing and dis
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Meeting-Baas/logs-table
-   cd logs-table
+   git clone https://github.com/Meeting-Baas/pricing
+   cd pricing
    ```
 
 2. Install dependencies:
