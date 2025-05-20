@@ -1,8 +1,8 @@
+import { Badge } from "@/components/ui/badge"
 import { type PlanInfo, useSubscription } from "@/contexts/subscription"
 import { Check } from "lucide-react"
 import { useCallback } from "react"
 import { toast } from "sonner"
-import { Badge } from "@/components/ui/badge"
 
 interface PlanCardProps {
   isConnected: boolean
@@ -13,10 +13,10 @@ interface PlanCardProps {
 
 const STRIPE_PRODUCTS = {
   scale: {
-    price: process.env.NEXT_PUBLIC_STRIPE_SCALE_PRICE_ID || "price_1QnNcCDcGmQpwyKKFEaBw7cB"
+    price: process.env.NEXT_PUBLIC_STRIPE_SCALE_PRICE_ID || ""
   },
   enterprise: {
-    price: process.env.NEXT_PUBLIC_STRIPE_ENTERPRISE_PRICE_ID || "price_1QnNVSDcGmQpwyKKwy3a41jx"
+    price: process.env.NEXT_PUBLIC_STRIPE_ENTERPRISE_PRICE_ID || ""
   }
 } as const
 

@@ -2,12 +2,15 @@
 'use client'
 
 import { PlanInfo, TokenPackInfo } from '@/contexts/subscription/types'
+import { defaultPlanInfo } from '@/contexts/subscription/utils/constants'
 import { PlanType } from '@/lib/subscription/types'
 import { useCallback, useState } from 'react'
 import { toast } from 'sonner'
 
 export const usePlansData = () => {
-    const [plansInfo, setPlansInfo] = useState<Record<string, PlanInfo>>({})
+    const [plansInfo, setPlansInfo] = useState<Record<string, PlanInfo>>({
+        PayAsYouGo: defaultPlanInfo,
+    })
     const [tokenPacks, setTokenPacks] = useState<Record<string, TokenPackInfo>>({})
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState<string | null>(null)
@@ -30,6 +33,7 @@ export const usePlansData = () => {
             console.log('SCALE_PRODUCT_ID', process.env.NEXT_PUBLIC_STRIPE_SCALE_PRODUCT_ID)
 
             const plansData: Record<string, PlanInfo> = {
+                PayAsYouGo: defaultPlanInfo,
                 ScaleAPI: {
                     concurrentBots: parseInt(scaleResponse.product.metadata.concurrentBots),
                     requestsPerSecond: parseInt(scaleResponse.product.metadata.requestsPerSecond),

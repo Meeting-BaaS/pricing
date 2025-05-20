@@ -123,18 +123,22 @@ export const PricingPage = ({ isConnected = false }: { isConnected: boolean }) =
         </div>
 
         <div className="space-y-6 rounded-xl p-6 dark:bg-neutral-900">
+        <h2 className="w-full text-left text-primary text-xl opacity-80">
+            1. Choose your API plan
+          </h2>
           <div className="grid w-full grid-cols-1 gap-6 xl:grid-cols-3">
             {API_PLANS.map((x) =>
               x.plan ? <PlanCard key={x.plan.title} {...x} isConnected={isConnected} /> : null
             )}
           </div>
-          <h2 className="w-full text-left text-primary text-xl opacity-80">
-            1. Choose your API plan
-          </h2>
+         
         </div>
 
         {/* Token Packs */}
         <div className="space-y-6 rounded-xl p-6 dark:bg-neutral-900">
+        <h2 className="w-full text-left text-primary text-xl opacity-80">
+            2. Purchase token packs
+          </h2>
           <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
             {getTokenPacks().map((pack) => (
               <TokenPackCard
@@ -145,9 +149,7 @@ export const PricingPage = ({ isConnected = false }: { isConnected: boolean }) =
               />
             ))}
           </div>
-          <h2 className="w-full text-left text-primary text-xl opacity-80">
-            2. Purchase token packs
-          </h2>
+          
         </div>
       </div>
     </div>
