@@ -12,7 +12,7 @@ export function useHandlePurchase() {
             discount_percentage?: number,
         ) => {
             try {
-                const response = await fetch('/api/subscription/checkout', {
+                const response = await fetch('/api/baas/payment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -10,7 +10,7 @@ export const useSubscriptionData = () => {
 
     const loadCurrentPlan = useCallback(async () => {
         try {
-            const response = await fetch('/api/subscription/current')
+            const response = await fetch('/api/baas/payment/subscriptions_infos')
             const data = await response.json()
             if (data.plan) {
                 setCurrentPlan(data.plan)
