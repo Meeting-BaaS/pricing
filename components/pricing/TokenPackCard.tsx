@@ -70,7 +70,7 @@ export const TokenPackCard = ({ pack, features, isConnected = false }: TokenPack
                 </span>
               </div>
               <div className="flex flex-col items-end">
-                <span className="font-bold text-4xl text-primary leading-3">{pack.tokens}</span>
+                <span className="font-bold text-4xl text-primary leading-4">{pack.tokens}</span>
                 <span className="text-baas-primary-700 text-sm">tokens</span>
               </div>
             </div>
@@ -105,7 +105,7 @@ export const TokenPackCard = ({ pack, features, isConnected = false }: TokenPack
         {isConnected && (
           <button
             type="button"
-            className="w-full rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="w-full cursor-pointer rounded-lg bg-primary px-4 py-2 font-medium text-primary-foreground transition-colors hover:bg-primary/90"
             onClick={handlePackPurchase}
           >
             Purchase

@@ -104,7 +104,7 @@ export const PricingPage = ({ isConnected = false }: { isConnected: boolean }) =
   return (
     <div className="scrollbar-none container mx-auto flex max-w-8xl flex-col gap-4 overflow-y-scroll rounded-2xl p-2 md:gap-8">
       <div className="flex w-full flex-col space-y-6">
-        <div className="space-y-6 rounded-xl bg-opacity-10 p-6 dark:bg-neutral-900">
+        <div className="space-y-6 rounded-xl p-6 dark:bg-baas-black border-primary/30 border-1">
           <div className="w-full">
             <div className="flex flex-wrap justify-center gap-6">
               {TOKEN_RATES.map((rate) => (
@@ -122,8 +122,8 @@ export const PricingPage = ({ isConnected = false }: { isConnected: boolean }) =
           </h2>
         </div>
 
-        <div className="space-y-6 rounded-xl p-6 dark:bg-neutral-900">
-        <h2 className="w-full text-left text-primary text-xl opacity-80">
+        <div className="space-y-6 rounded-xl p-6 dark:bg-baas-black border-primary/30 border-1">
+        <h2 className="w-full text-left text-primary text-xl font-black">
             1. Choose your API plan
           </h2>
           <div className="grid w-full grid-cols-1 gap-6 xl:grid-cols-3">
@@ -135,8 +135,8 @@ export const PricingPage = ({ isConnected = false }: { isConnected: boolean }) =
         </div>
 
         {/* Token Packs */}
-        <div className="space-y-6 rounded-xl p-6 dark:bg-neutral-900">
-        <h2 className="w-full text-left text-primary text-xl opacity-80">
+        <div className="space-y-6 rounded-xl p-6 dark:bg-baas-black border-primary/30 border-1">
+        <h2 className="w-full text-left text-primary text-xl font-black">
             2. Purchase token packs
           </h2>
           <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">

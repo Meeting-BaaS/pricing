@@ -65,7 +65,7 @@ export const PlanCard = ({ features, isPopular, plan, isConnected = false }: Pla
 
   return (
     <div
-      className={`hover:-translate-y-1 relative h-full w-full overflow-hidden rounded-xl border p-6 transition-all duration-600 hover:border-primary ${
+      className={`hover:-translate-y-1 relative h-full w-full overflow-hidden rounded-3xl border p-6 transition-all duration-600 hover:border-primary ${
         isSelected || isHighlighted(plan?.type || "PayAsYouGo") ? "border-primary" : "border-border"
       }`}
       onMouseEnter={handleMouseEnter}
@@ -94,7 +94,7 @@ export const PlanCard = ({ features, isPopular, plan, isConnected = false }: Pla
         {isConnected && (
           <button
             type="button"
-            className={`w-full rounded-lg px-4 py-2 font-medium transition-colors ${
+            className={`w-full rounded-lg px-4 py-2 font-medium transition-colors cursor-pointer ${
               plan?.type !== "PayAsYouGo" || currentPlan === "EnterpriseAPI"
                 ? "bg-primary text-primary-foreground hover:bg-primary/90"
                 : "bg-muted text-muted-foreground hover:bg-muted/90"

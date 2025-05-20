@@ -23,7 +23,7 @@ export const TokenRateCard = ({ title, rate, unit, subtitle }: TokenRateCardProp
       <div className="flex flex-col gap-2">
         <span className="font-medium text-sm">{title}</span>
         <span
-          className={`font-bold text-2xl ${isEntreprisePlanHighlighted ? "text-primary" : "text-baas-primary-700"}`}
+          className={`font-bold text-2xl ${isEntreprisePlanHighlighted ? "text-primary" : "dark:text-baas-primary-700 text-primary/60"}`}
         >
           {rate}
         </span>
