@@ -1,6 +1,5 @@
 import Footer from "@/components/footer"
 import Header from "@/components/header"
-import { SubscriptionProvider } from "@/contexts/subscription"
 import type { Metadata } from "next"
 import { Toaster } from "sonner"
 
@@ -15,11 +14,11 @@ export default async function PublicLayout({
   children: React.ReactNode
 }>) {
   return (
-    <SubscriptionProvider>
+    <>
       <Header />
       <main className="grow">{children}</main>
       <Footer page="Pricing" />
       <Toaster />
-    </SubscriptionProvider>
+    </>
   )
 }
