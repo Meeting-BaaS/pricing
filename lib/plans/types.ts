@@ -63,6 +63,7 @@ export type ProductFetchResponse = {
 }
 
 export type PlanInfo = {
+  productId: string
   concurrentBots: number
   requestsPerSecond: number
   tokenDiscount: number
@@ -76,6 +77,7 @@ export type PlanInfo = {
   type: PlanType
   features: Feature[]
   redirectTo: string
+  priceId: string
 }
 
 export type TokenPackInfo = {
@@ -87,4 +89,11 @@ export type TokenPackInfo = {
   type: PlanType
   isHighlighted?: boolean
   redirectTo: string
+  priceId: string
+}
+
+export type PlanFeature = {
+  name: string
+  description?: string
+  supportedIn: PlanType[]
 }

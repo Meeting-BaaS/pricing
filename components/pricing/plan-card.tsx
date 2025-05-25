@@ -79,7 +79,7 @@ export function PlanCard({
         </ul>
       </CardContent>
       <CardFooter>
-        <Button variant={isHighlighted ? "default" : "secondary"} className="z-20 w-full" asChild>
+        <Button variant={isHighlighted ? "default" : "outline"} className="z-20 w-full" asChild>
           <Link href={plan.redirectTo}>Get started {plan.price === "0" ? "for free" : ""}</Link>
         </Button>
       </CardFooter>

@@ -14,17 +14,24 @@ import {
 } from "@/components/ui/select"
 import { useState } from "react"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 interface ComparePlansProps {
   plans: PlanInfo[]
+  isBillingPage?: boolean
 }
 
-export function ComparePlans({ plans }: ComparePlansProps) {
+export function ComparePlans({ plans, isBillingPage }: ComparePlansProps) {
   const [selectedPlan, setSelectedPlan] = useState<PlanInfo>(plans[0])
 
   return (
     <div className="relative">
-      <div className="sticky top-[3.05rem] right-0 left-0 z-30 grid grid-cols-4 border-b bg-background py-4 lg:top-[3.6rem] lg:grid-cols-5">
+      <div
+        className={cn(
+          "top-[3.05rem] right-0 left-0 z-30 grid grid-cols-4 border-b bg-background lg:top-[3.6rem] lg:grid-cols-5",
+          !isBillingPage && "sticky py-4"
+        )}
+      >
         <div className="p-4 lg:col-span-2 lg:p-6" />
         {/* Mobile Select */}
         <div className="col-span-4 mb-2 block lg:hidden">
@@ -55,14 +62,18 @@ export function ComparePlans({ plans }: ComparePlansProps) {
             className="hidden flex-col items-center justify-center p-4 lg:flex lg:p-6"
           >
             <h3 className="font-semibold text-lg">{plan.title}</h3>
-            <Button
-              variant={plan.type === "ScaleAPI" ? "default" : "secondary"}
-              size="sm"
-              className="mt-4"
-              asChild
-            >
-              <Link href={plan.redirectTo}>Get started {plan.price === "0" ? "for free" : ""}</Link>
-            </Button>
+            {!isBillingPage && (
+              <Button
+                variant={plan.type === "ScaleAPI" ? "default" : "outline"}
+                size="sm"
+                className="mt-4"
+                asChild
+              >
+                <Link href={plan.redirectTo}>
+                  Get started {plan.price === "0" ? "for free" : ""}
+                </Link>
+              </Button>
+            )}
           </div>
         ))}
       </div>

@@ -1,4 +1,4 @@
-import type { Feature, PlanInfo, PlanType } from "@/lib/plans/types"
+import type { Feature, PlanFeature, PlanInfo, PlanType } from "@/lib/plans/types"
 import { getAuthAppUrl } from "@/lib/auth/auth-app-url"
 
 export const packFeatures: Record<PlanType, Feature[]> = {
@@ -11,12 +11,6 @@ export const packFeatures: Record<PlanType, Feature[]> = {
   ProPack: ["Priority support", "Email support"],
   BusinessPack: ["Priority support", "Phone & Email support"],
   EnterprisePack: ["Dedicated support", "Phone & Email support"]
-}
-
-export type PlanFeature = {
-  name: string
-  description?: string
-  supportedIn: PlanType[]
 }
 
 export const planComparisonFeatures: PlanFeature[] = [
@@ -78,8 +72,18 @@ export const planComparisonFeatures: PlanFeature[] = [
   }
 ]
 
+export const allPlanTypes: PlanType[] = ["ScaleAPI", "EnterpriseAPI"]
+
+export const allTokenPackTypes: PlanType[] = [
+  "StarterPack",
+  "ProPack",
+  "BusinessPack",
+  "EnterprisePack"
+]
+
 // Default plan info for the Pay as you go plan
 export const defaultPlanInfo: PlanInfo = {
+  productId: "pay_as_you_go_plan",
   concurrentBots: 5,
   requestsPerSecond: 2,
   tokenDiscount: 0,
@@ -92,5 +96,6 @@ export const defaultPlanInfo: PlanInfo = {
   title: "Pay as you go",
   type: "PayAsYouGo",
   features: packFeatures["PayAsYouGo" as PlanType],
-  redirectTo: getAuthAppUrl() // Redirect to the auth app for the free plan as it does not require payment
+  redirectTo: getAuthAppUrl(), // Redirect to the auth app for the free plan as it does not require payment
+  priceId: ""
 }
