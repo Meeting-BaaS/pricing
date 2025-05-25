@@ -47,4 +47,4 @@ export const tokenRates = [
     unit: "plan only",
     icon: Calendar
   }
-] as const
+]
