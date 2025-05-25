@@ -1,8 +1,8 @@
 import {
   AI_CHAT_URL,
-  BILLING_URL,
   CONSUMPTION_URL,
   CREDENTIALS_URL,
+  LOGS_URL,
   SETTINGS_URL
 } from "@/lib/external-urls"
 
@@ -27,11 +27,11 @@ export const menuOptions: readonly MenuOption[] = [
     separator: true
   },
   {
-    title: "Consumption",
-    href: CONSUMPTION_URL
+    title: "Logs",
+    href: LOGS_URL
   },
   {
-    title: "Billing",
-    href: BILLING_URL
+    title: "Consumption",
+    href: CONSUMPTION_URL
   }
 ]

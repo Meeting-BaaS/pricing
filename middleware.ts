@@ -1,5 +1,4 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getAuthAppUrl } from "@/lib/auth/auth-app-url"
 
 if (!process.env.AUTH_COOKIE_NAME) {
   throw new Error("AUTH_COOKIE_NAME environment variable is not defined")
@@ -7,7 +6,6 @@ if (!process.env.AUTH_COOKIE_NAME) {
 
 const protectedRoutes = ["/billing"]
 const publicRoutes = ["/pricing"]
-const authAppUrl = getAuthAppUrl()
 
 export async function middleware(request: NextRequest) {
   // Check if auth cookie exists before processing request
@@ -16,7 +14,6 @@ export async function middleware(request: NextRequest) {
   const cookie = authCookieName ? request.cookies.get(authCookieName) : undefined
   const response = NextResponse.next()
 
-  const signInUrl = `${authAppUrl}/sign-in`
   const appUrl = request.nextUrl.origin
   const redirectTo = `${appUrl}${request.nextUrl.pathname}${request.nextUrl.search}`
 
@@ -24,9 +21,7 @@ export async function middleware(request: NextRequest) {
   const isPublicRoute = publicRoutes.includes(request.nextUrl.pathname)
 
   if (isProtectedRoute && !cookie) {
-    const newUrl = new URL(`${signInUrl}${request.nextUrl.search}`)
-    newUrl.searchParams.set("redirectTo", redirectTo)
-    return NextResponse.redirect(newUrl)
+    return NextResponse.redirect(new URL("/pricing", request.url))
   }
 
   if (isPublicRoute && cookie) {
@@ -34,6 +29,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // Setting a custom header so that RSCs can handle redirection if session not found
+  // In this app, when user is not logged in, they are redirected to pricing page, so this header is not used
   response.headers.set("x-redirect-to", redirectTo)
 
   return response
