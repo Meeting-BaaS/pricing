@@ -2,9 +2,11 @@ import type { Feature, PlanInfo, PlanType } from "@/lib/plans/types"
 import { getAuthAppUrl } from "@/lib/auth/auth-app-url"
 
 export const packFeatures: Record<PlanType, Feature[]> = {
+  // API plans
   PayAsYouGo: ["Basic support"],
   ScaleAPI: ["Priority support"],
-  EnterpriseAPI: ["Dedicated support"],
+  EnterpriseAPI: ["Dedicated support", "Calendar integration"],
+  // Token packs
   StarterPack: ["Basic support", "Email support"],
   ProPack: ["Priority support", "Email support"],
   BusinessPack: ["Priority support", "Phone & Email support"],

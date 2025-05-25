@@ -13,6 +13,7 @@ export type Feature =
   | "Email support"
   | "Phone & Email support"
   | "Dedicated support"
+  | "Calendar integration"
 
 export type PlanMetadata = {
   requestsPerSecond: string
