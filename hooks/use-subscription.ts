@@ -1,16 +1,9 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query"
-import {
-  fetchSubscriptionsInfo,
-  initiatePurchase,
-  cancelSubscription,
-  openBillingPortal
-} from "@/lib/subscription/api"
+import { useQuery, useMutation } from "@tanstack/react-query"
+import { fetchSubscriptionsInfo, initiatePurchase, openBillingPortal } from "@/lib/subscription/api"
 import { toast } from "sonner"
 import type { SubscriptionResponse } from "@/lib/subscription/types"
 
 export function useSubscription(initialSubscription?: SubscriptionResponse) {
-  const queryClient = useQueryClient()
-
   const {
     data: subscription,
     isLoading: isSubscriptionLoading,
@@ -60,19 +53,6 @@ export function useSubscription(initialSubscription?: SubscriptionResponse) {
     }
   })
 
-  const cancelSubscriptionMutation = useMutation({
-    mutationFn: cancelSubscription,
-    onSuccess: () => {
-      // Invalidate subscription query to refetch latest data
-      queryClient.invalidateQueries({ queryKey: ["subscription"] })
-      toast.success("Subscription cancelled successfully")
-    },
-    onError: (error) => {
-      console.error("Failed to cancel subscription", error)
-      toast.error("Failed to cancel subscription. Please try again.")
-    }
-  })
-
   return {
     // Fetch subscription info
     subscription,
@@ -87,10 +67,6 @@ export function useSubscription(initialSubscription?: SubscriptionResponse) {
 
     // Billing portal
     openBillingPortal: billingPortalMutation.mutate,
-    openBillingPortalLoading: billingPortalMutation.isPending,
-
-    // Cancel subscription
-    cancelSubscription: cancelSubscriptionMutation.mutate,
-    cancelSubscriptionLoading: cancelSubscriptionMutation.isPending
+    openBillingPortalLoading: billingPortalMutation.isPending
   }
 }

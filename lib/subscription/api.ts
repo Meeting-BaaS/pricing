@@ -45,16 +45,6 @@ export async function initiatePurchase({
   return response.json()
 }
 
-export async function cancelSubscription() {
-  const response = await fetch("/api/baas/payment/cancel", {
-    method: "POST"
-  })
-
-  if (!response.ok) {
-    throw new Error(`Failed to cancel subscription: ${response.status} ${response.statusText}`)
-  }
-}
-
 export async function openBillingPortal() {
   const response = await fetch("/api/baas/payment/create_billing_portal", {
     method: "POST"
