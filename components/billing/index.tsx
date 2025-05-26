@@ -42,7 +42,6 @@ export default function Billing({
     isSubscriptionError,
     subscriptionError
   } = useSubscription(initialSubscription)
-  const session = useSession()
   const [showPaymentError, setShowPaymentError] = useState(paymentStatus === "cancelled")
   const [showComparePlans, setShowComparePlans] = useState(false)
 
@@ -107,14 +106,19 @@ export default function Billing({
         <div className="flex h-96 items-center justify-center">No data found</div>
       ) : (
         <>
+          <section className="pb-5">
+            <TokenUsageRates />
+          </section>
           <div className="mb-6">
             <h1 className="font-bold text-3xl">Billing Dashboard</h1>
-            <p className="text-muted-foreground">{session?.user.email}</p>
+            <p className="text-muted-foreground">{subscription.subscription.email}</p>
           </div>
           <Accordion
             type="single"
             collapsible
-            defaultValue={validatedSelectedPlan ? "all-plans" : ""} // If the page is loaded with a plan, we want to open the accordion by default
+            defaultValue={
+              subscription.subscription.product !== "EnterpriseAPI" ? "all-plans" : undefined
+            }
           >
             <AccordionItem value="all-plans">
               <div className="w-full md:w-1/2 lg:w-1/3">
@@ -124,7 +128,16 @@ export default function Billing({
                   isSubscriptionRefetching={isSubscriptionRefetching}
                 />
               </div>
-              <AccordionContent className="py-10">
+              <AccordionContent className="pt-10">
+                <div className="mb-6">
+                  <h2 className="font-bold text-2xl">API Plans</h2>
+                  {subscription.subscription.product !== "EnterpriseAPI" && (
+                    <p className="text-base text-muted-foreground">
+                      Scale your concurrent bots and access features designed for growing
+                      businesses.
+                    </p>
+                  )}
+                </div>
                 <section className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                   {apiPlans.map((plan) => (
                     <BillingPlanCard
@@ -146,7 +159,7 @@ export default function Billing({
           <section className="pt-5 pb-20">
             <div className="mb-6">
               <div className="font-bold text-2xl">Token Packs</div>
-              <p className="text-muted-foreground">
+              <p className="text-base text-muted-foreground">
                 Running low on tokens? Purchase a pack to get more.
               </p>
             </div>
@@ -162,16 +175,6 @@ export default function Billing({
                 />
               ))}
             </div>
-          </section>
-
-          <section className="border-t py-10">
-            <div className="mb-6">
-              <h2 className="font-semibold text-xl">Token Usage Rates</h2>
-              <p className="text-muted-foreground">
-                Understand how tokens are consumed across different features
-              </p>
-            </div>
-            <TokenUsageRates />
           </section>
           <PurchaseDialog purchaseDialog={purchaseDialog} onOpenChange={setPurchaseDialog} />
           <PaymentErrorDialog open={showPaymentError} onOpenChange={setShowPaymentError} />

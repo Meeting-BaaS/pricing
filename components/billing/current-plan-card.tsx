@@ -33,7 +33,11 @@ export function CurrentPlanCard({
             Current Plan
             {isSubscriptionRefetching && <Loader2 className="size-4 animate-spin stroke-primary" />}
           </CardTitle>
-          {!isEnterprise && <Badge variant="default">Upgrade Available</Badge>}
+          {isEnterprise ? (
+            <Badge variant="default">Maximum Power</Badge>
+          ) : (
+            <Badge variant="warning">Currently Limited</Badge>
+          )}
         </div>
       </CardHeader>
       <CardContent>
@@ -44,17 +48,16 @@ export function CurrentPlanCard({
           </div>
 
           {!isEnterprise ? (
-            <div className="space-y-2">
-              <p className="text-muted-foreground text-sm">
-                Unlock more power: Scale your concurrent bots and access premium features designed
-                for growing businesses.
-              </p>
-              <AccordionTrigger className="w-full py-2 text-primary">
-                View all plans
-              </AccordionTrigger>
-            </div>
+            <AccordionTrigger className="w-full py-2 text-primary hover:cursor-pointer hover:no-underline">
+              <div className="flex items-center gap-1">
+                <span className="text-muted-foreground text-sm">Need better concurrency?</span>
+                <span className="text-primary">Explore other plans</span>
+              </div>
+            </AccordionTrigger>
           ) : (
-            <AccordionTrigger className="w-full">View other plans</AccordionTrigger>
+            <AccordionTrigger className="w-full hover:cursor-pointer hover:no-underline">
+              Other plans
+            </AccordionTrigger>
           )}
         </div>
       </CardContent>

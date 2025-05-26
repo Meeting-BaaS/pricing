@@ -47,7 +47,7 @@ export function useSubscription(initialSubscription?: SubscriptionResponse) {
     mutationFn: openBillingPortal,
     onSuccess: (response) => {
       if (response.url) {
-        window.location.href = response.url
+        window.open(response.url, "_blank")
         toast.success("Billing portal opened")
       } else {
         console.error("Response didn't contain a url to open billing portal", response)

@@ -24,7 +24,7 @@ export default async function BillingPage({
   const subscription = await fetchServerSubscriptionsInfo(jwt)
 
   return (
-    <div className="m-4 md:mx-16 md:my-8">
+    <div className="m-4 md:mx-16 md:my-4">
       <Billing
         apiPlans={apiPlans}
         tokenPacks={tokenPacks}

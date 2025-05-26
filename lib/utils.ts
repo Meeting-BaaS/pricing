@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import type { PlanType } from "@/lib/plans/types"
-import { allPlanTypes, allTokenPackTypes } from "@/lib/plans/constants"
+import { allSubscriptionPlanTypes, allTokenPackTypes } from "@/lib/plans/constants"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -24,7 +24,9 @@ export function validatePlanSearchParam(
   if (!selectedPlan) return null
 
   const normalizedPlan = selectedPlan.toLowerCase()
-  const matchingPlan = allPlanTypes.find((plan) => plan.toLowerCase() === normalizedPlan)
+  const matchingPlan = allSubscriptionPlanTypes.find(
+    (plan) => plan.toLowerCase() === normalizedPlan
+  )
 
   // If the selected plan is the same as the current plan, we don't want to show the purchase dialog
   if (matchingPlan === currentPlan) {

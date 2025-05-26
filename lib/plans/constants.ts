@@ -72,7 +72,7 @@ export const planComparisonFeatures: PlanFeature[] = [
   }
 ]
 
-export const allPlanTypes: PlanType[] = ["ScaleAPI", "EnterpriseAPI"]
+export const allSubscriptionPlanTypes: PlanType[] = ["ScaleAPI", "EnterpriseAPI"]
 
 export const allTokenPackTypes: PlanType[] = [
   "StarterPack",

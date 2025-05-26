@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import type { SubscriptionResponse } from "@/lib/subscription/types"
 import { useSubscription } from "@/hooks/use-subscription"
+import { spotlightVariant } from "@/components/animations/background"
+import { motion } from "motion/react"
 
 interface BillingPlanCardProps {
   plan: PlanInfo
@@ -28,7 +30,9 @@ export function BillingPlanCard({
   const { openBillingPortal, openBillingPortalLoading } = useSubscription()
 
   const isCurrentPlan = currentSubscription.subscription.product === plan.type
-  // PayAsYouGo is a special case because it's not a subscription plan, it's a one-time purchase
+  const isAnySubscriptionPlan = currentSubscription.subscription.product !== "PayAsYouGo"
+
+  // PayAsYouGo is a special case because it's not a subscription plan
   const isCurrentPayAsYouGo =
     isCurrentPlan && currentSubscription.subscription.product === "PayAsYouGo"
   const isActiveSubscriptionPlan =
@@ -44,9 +48,24 @@ export function BillingPlanCard({
         </Badge>
       )}
       {isPopular && (
-        <Badge variant="default" className="absolute top-0 right-0 m-4">
-          Most Popular
-        </Badge>
+        <>
+          <Badge variant="default" className="absolute top-2 right-2 m-4">
+            Most Popular
+          </Badge>
+          {!isAnySubscriptionPlan && (
+            <motion.div
+              className="-translate-x-1/2 absolute bottom-6 left-1/2 h-6 w-1/2 rounded-full blur-2xl"
+              style={{
+                background:
+                  "radial-gradient(circle, rgba(0, 219, 205, 0.9) 10%, rgba(0, 219, 205, 0.8) 80%, transparent 100%)"
+              }}
+              initial={{ opacity: 0 }}
+              whileInView={spotlightVariant()}
+              viewport={{ once: true }}
+              aria-hidden="true"
+            />
+          )}
+        </>
       )}
       <CardHeader>
         <CardTitle>{plan.title}</CardTitle>
@@ -81,7 +100,7 @@ export function BillingPlanCard({
         ) : isActiveSubscriptionPlan ? (
           <Button
             variant="outline"
-            className="w-full"
+            className="z-20 w-full"
             onClick={() => openBillingPortal()}
             disabled={openBillingPortalLoading}
             aria-label={openBillingPortalLoading ? "Loading..." : "Manage Subscription"}
@@ -93,11 +112,11 @@ export function BillingPlanCard({
               "Manage Subscription"
             )}
           </Button>
-        ) : (
-          <Button variant="default" className="w-full" onClick={() => handlePurchase(plan)}>
+        ) : plan.type !== "PayAsYouGo" ? (
+          <Button variant="default" className="z-20 w-full" onClick={() => handlePurchase(plan)}>
             Subscribe
           </Button>
-        )}
+        ) : null}
       </CardFooter>
     </Card>
   )
