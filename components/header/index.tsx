@@ -5,8 +5,8 @@ import { ThemeToggle } from "@/components/header/theme-toggle"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { GitHubLogo } from "@/components/icons/github"
-import { GITHUB_REPO_URL } from "@/lib/external-urls"
-import { getAuthAppUrl, getSignInUrl } from "@/lib/auth/auth-app-url"
+import { GITHUB_REPO_URL, MEETING_BAAS_HOMEPAGE_URL } from "@/lib/external-urls"
+import { getSignInUrl } from "@/lib/auth/auth-app-url"
 
 export default function Header() {
   const onSignIn = () => {
@@ -16,7 +16,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 mx-auto box-content w-full max-w-container border-b bg-background/15 backdrop-blur-md lg:top-2 lg:mt-2 lg:w-[calc(100%-4rem)] lg:rounded-2xl lg:border">
       <nav className="flex h-12 w-full flex-row items-center justify-between px-4">
-        <Link href={`${getAuthAppUrl()}/home`} target="_blank" rel="noopener noreferrer">
+        <Link href={`${MEETING_BAAS_HOMEPAGE_URL}`} target="_blank" rel="noopener noreferrer">
           <div className="flex items-center gap-2">
             <Image
               src="/logo.svg"
@@ -44,7 +44,7 @@ export default function Header() {
             </Button>
             <ThemeToggle className="hidden md:flex" />
           </div>
-          <Button size="sm" onClick={onSignIn}>
+          <Button size="sm" className="h-7 text-xs" onClick={onSignIn}>
             Sign in
           </Button>
         </div>

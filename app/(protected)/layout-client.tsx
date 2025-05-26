@@ -4,6 +4,7 @@ import type { Session } from "@/lib/auth/types"
 import ProtectedHeader from "@/components/protected-header"
 import Footer from "@/components/footer"
 import { useSession } from "@/hooks/use-session"
+import { useRouter } from "next/navigation"
 
 interface ProtectedLayoutClientProps {
   session: Session
@@ -15,8 +16,10 @@ export default function ProtectedLayoutClient({
   session: initialSession
 }: ProtectedLayoutClientProps) {
   const session = useSession(initialSession)
+  const router = useRouter()
 
   if (!session) {
+    router.push("/pricing")
     return null
   }
 
