@@ -95,7 +95,10 @@ export default function Billing({
   return (
     <div className="relative space-y-4">
       {isSubscriptionLoading && !subscription ? (
-        <div className="flex h-96 items-center justify-center">
+        <div
+          className="flex h-96 items-center justify-center"
+          aria-label="Loading subscription data"
+        >
           <Loader2 className="size-8 animate-spin text-primary" />
         </div>
       ) : isSubscriptionError ? (

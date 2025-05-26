@@ -79,7 +79,7 @@ export const formatData = (products: ProductFetchResponse): FormattedData => {
     tokenPacks.push({
       title: value.product.name.replace("Baas ", ""), // Remove the "Baas " prefix from the title
       price: value.prices[0].unit_amount / 100,
-      stripe_price_id: value.prices[0].id,
+      stripePriceId: value.prices[0].id,
       features: packFeatures[key as PlanType],
       tokens: Number.parseInt(metadata.tokens),
       isHighlighted: false,

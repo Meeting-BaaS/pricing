@@ -83,7 +83,7 @@ export type PlanInfo = {
 export type TokenPackInfo = {
   title: string
   price: number
-  stripe_price_id: string
+  stripePriceId: string
   features: Feature[]
   tokens: number
   type: PlanType

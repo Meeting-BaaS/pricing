@@ -95,7 +95,7 @@ export const defaultPlanInfo: PlanInfo = {
   livemode: false,
   title: "Pay as you go",
   type: "PayAsYouGo",
-  features: packFeatures["PayAsYouGo" as PlanType],
+  features: packFeatures.PayAsYouGo,
   redirectTo: getAuthAppUrl(), // Redirect to the auth app for the free plan as it does not require payment
   priceId: ""
 }

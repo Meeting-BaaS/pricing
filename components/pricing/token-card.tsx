@@ -40,8 +40,7 @@ export function TokenCard({
     ? apiPlans.find((plan) => plan.type === currentSubscription)
     : null
   const discount = currentPlan?.tokenDiscount || 0
-  const discountedPrice =
-    discount > 0 ? Math.round(pack.price * (1 - discount / 100) * 100) / 100 : pack.price
+  const discountedPrice = discount > 0 ? pack.price * (1 - discount / 100) : pack.price
   const discountedPerTokenPrice = formatPrice(discountedPrice / pack.tokens)
 
   return (

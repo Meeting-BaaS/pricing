@@ -20,11 +20,11 @@ export function TokenUsageRates() {
         </AccordionTrigger>
         <AccordionContent>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {tokenRates.map((rate, index) => {
+            {tokenRates.map((rate) => {
               const Icon = rate.icon
               return (
                 <div
-                  key={index}
+                  key={rate.title}
                   className="flex items-start gap-4 rounded-lg border border-border bg-card p-4 dark:border-0 dark:bg-muted/50"
                 >
                   <Icon className="mt-0.5 size-5 text-muted-foreground" />

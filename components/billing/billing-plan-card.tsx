@@ -84,8 +84,8 @@ export function BillingPlanCard({
             <Check className="size-4 text-primary" />
             {plan.requestsPerSecond} Requests/Second
           </li>
-          {plan.features.map((feature, index) => (
-            <li key={index} className="flex items-center gap-2">
+          {plan.features.map((feature) => (
+            <li key={feature} className="flex items-center gap-2">
               <Check className="size-4 text-primary" />
               <span>{feature}</span>
             </li>
