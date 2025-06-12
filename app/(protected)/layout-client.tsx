@@ -26,7 +26,7 @@ export default function ProtectedLayoutClient({
   return (
     <>
       <ProtectedHeader user={session.user} />
-      <main className="grow">{children}</main>
+      <main className="flex grow flex-col">{children}</main>
       <Footer page="Billing" />
     </>
   )
