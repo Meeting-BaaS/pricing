@@ -16,7 +16,7 @@ export default async function PublicLayout({
   return (
     <>
       <Header />
-      <main className="grow">{children}</main>
+      <main className="flex grow flex-col">{children}</main>
       <Footer page="Pricing" />
       <Toaster />
     </>
