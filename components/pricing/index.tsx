@@ -1,15 +1,14 @@
 "use client"
 
-import type { PlanInfo, TokenPackInfo } from "@/lib/plans/types"
-import { Heading } from "@/components/layout/heading"
-import { PlanCard } from "@/components/pricing/plan-card"
-import { ComparePlans } from "@/components/pricing/compare-plans"
-import { TokenCard } from "@/components/pricing/token-card"
-import { ArrowDown } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { FAQSection } from "@/components/pricing/faq-section"
-import { motion } from "motion/react"
 import { sectionVariant } from "@/components/animations/section"
+import { TokenUsageRates } from "@/components/billing/token-usage-rates"
+import { Heading } from "@/components/layout/heading"
+import { ComparePlans } from "@/components/pricing/compare-plans"
+import { FAQSection } from "@/components/pricing/faq-section"
+import { PlanCard } from "@/components/pricing/plan-card"
+import { TokenCard } from "@/components/pricing/token-card"
+import type { PlanInfo, TokenPackInfo } from "@/lib/plans/types"
+import { motion } from "motion/react"
 
 interface PricingProps {
   apiPlans: PlanInfo[]
@@ -23,36 +22,8 @@ export default function Pricing({ apiPlans, tokenPacks }: PricingProps) {
         text="Simple, Transparent Pricing"
         description="With a multi-tier API and token pack system, there's a plan for everyone"
       />
-      <motion.section
-        className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-        {...sectionVariant(0.25)}
-      >
-        {apiPlans.map((plan) => (
-          <PlanCard
-            key={plan.type}
-            plan={plan}
-            isHighlighted={plan.type === "ScaleAPI"}
-            onboardingFeature={plan.type === "PayAsYouGo"}
-          />
-        ))}
-      </motion.section>
-      <motion.div className="flex justify-end" {...sectionVariant(0.25)}>
-        <Button
-          variant="link"
-          className="group -mt-10"
-          onClick={() => {
-            document
-              .getElementById("token-packs")
-              ?.scrollIntoView({ behavior: "smooth", block: "center" })
-          }}
-        >
-          View Token Packs
-          <ArrowDown className="size-4 transition-transform group-hover:translate-y-0.5" />
-        </Button>
-      </motion.div>
-      <motion.section {...sectionVariant()}>
-        <Heading text="Compare Plans" className="mb-2 md:mb-4" />
-        <ComparePlans plans={apiPlans} />
+      <motion.section {...sectionVariant(0.2)}>
+        <TokenUsageRates />
       </motion.section>
       <motion.section id="token-packs" {...sectionVariant()}>
         <Heading
@@ -69,6 +40,23 @@ export default function Pricing({ apiPlans, tokenPacks }: PricingProps) {
             />
           ))}
         </div>
+      </motion.section>
+      <motion.section
+        className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+        {...sectionVariant(0.25)}
+      >
+        {apiPlans.map((plan) => (
+          <PlanCard
+            key={plan.type}
+            plan={plan}
+            isHighlighted={plan.type === "ScaleAPI"}
+            onboardingFeature={plan.type === "PayAsYouGo"}
+          />
+        ))}
+      </motion.section>
+      <motion.section {...sectionVariant()}>
+        <Heading text="Compare Plans" className="mb-2 md:mb-4" />
+        <ComparePlans plans={apiPlans} />
       </motion.section>
 
       <FAQSection />
