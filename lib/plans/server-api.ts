@@ -14,7 +14,7 @@ const enterprisePackProductId = getEnvVar("STRIPE_ENTERPRISE_PACK_PRODUCT_ID")
 // Cache configuration for the APIs
 const cache = {
   next: {
-    revalidate: 60 * 60 // 1 hour
+    revalidate: 60 // 1 hour
   }
 }
 
